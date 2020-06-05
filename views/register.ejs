@@ -1,0 +1,105 @@
+<% include ./partials/header.ejs %>
+    <style>
+        body {
+            background: rgb(246, 246, 246);
+            background: linear-gradient(90deg, rgba(246, 246, 246, 1) 0%, rgba(175, 226, 231, 0.41780462184873945) 48%, rgba(87, 180, 189, 0.5480567226890756) 100%);
+        }
+        
+        a {
+            /* Had to use important because it looks like there is a style supersiding the normal a tag */
+            text-decoration: none !important;
+        }
+        
+        .signin {
+            background: rgba(44, 62, 80, 0.7);
+            padding: 50px;
+            width: 350px;
+            margin: auto;
+            margin-top: 200px;
+            height: 560px;
+            border-radius: 20px;
+        }
+        
+        .user-form {
+            width: 240px;
+            text-align: center;
+        }
+        
+        .user-typ {
+            width: 240px;
+            text-align: center;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #fff;
+            font-size: 20px;
+            font-weight: 200px;
+            padding: 15px 0;
+            transition: border 0.5s;
+            outline: none;
+            color: #fff;
+        }
+        
+        .user-button {
+            border: none;
+            width: 190px;
+            background: white;
+            color: #000;
+            font-size: 16px;
+            line-height: 25px;
+            padding: 10px 0;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+        
+        .user-button:hover {
+            color: #fff;
+            background-color: #17a2b8;
+        }
+        
+        h2 {
+            color: white;
+            text-align: center;
+            font-weight: 200;
+            font-size: 50px;
+        }
+        
+        .user-a {
+            color: yellow;
+            text-decoration: blink;
+            padding: 7px;
+        }
+        
+        .user-container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+        }
+        
+         ::placeholder {
+            color: aliceblue;
+            opacity: 0.8;
+            /* Firefox */
+        }
+        
+        .account {
+            color: white !important;
+        }
+    </style>
+
+    </form>
+    <div class="user-body">
+        <div class="signin">
+            <h2 class="user-h2"> Welcome,</h2>
+            <form class="user-form" action="/register" method="post">
+                <input class="user-typ" type="text" name="useremail" placeholder="Email">
+                <input class="user-typ" type="text" name="username" placeholder="Username">
+                <input class="user-typ" type="text" name="password" placeholder="Password"> <br><br>
+                <a href=""><input class="user-button" type="submit" value="Login"></a> <br><br>
+                <div class="user-container">
+                </div><br><br><br>
+                <p class="account">Already have an account? <a href="/login" class="user-a"> Login</a> </p>
+            </form>
+        </div>
+    </div>
+
+    <% include ./partials/footer.ejs %>

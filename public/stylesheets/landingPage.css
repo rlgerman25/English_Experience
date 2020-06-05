@@ -1,0 +1,109 @@
+header.masthead {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(0deg, #adb5bd 0%, #17a2b8 100%);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: scroll;
+    background-size: cover;
+}
+
+header.masthead .masthead-content {
+    z-index: 1;
+    position: relative;
+}
+
+header.masthead .masthead-content .masthead-heading {
+    font-size: 4rem;
+}
+
+header.masthead .masthead-content .masthead-subheading {
+    font-size: 2rem;
+}
+
+header.masthead .bg-circle {
+    z-index: 0;
+    position: absolute;
+    border-radius: 100%;
+    background: linear-gradient(0deg, #17a2b8 0%, #adb5bd 100%);
+}
+
+header.masthead .bg-circle-1 {
+    height: 55rem;
+    width: 55rem;
+    top: 13em;
+    right: 200rem;
+}
+
+header.masthead .bg-circle-2 {
+    height: 50rem;
+    width: 50rem;
+    top: -18rem;
+    right: -20rem;
+}
+
+header.masthead .bg-circle-3 {
+    height: 20rem;
+    width: 20rem;
+    bottom: -10rem;
+    right: 5%;
+}
+
+header.masthead .bg-circle-4 {
+    height: 30rem;
+    width: 30rem;
+    top: -5rem;
+    right: 35%;
+}
+
+section {
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+
+@media (min-width: 992px) {
+    header.masthead {
+        padding-top: calc(10rem + 70px);
+        padding-bottom: 15rem;
+    }
+    header.masthead .masthead-content .masthead-heading {
+        font-size: 6rem;
+    }
+    header.masthead .masthead-content .masthead-subheading {
+        font-size: 4rem;
+    }
+}
+
+.landing-underline {
+    color: white;
+    width: 35%;
+}
+
+.heading1 {
+    font-size: 4.4em;
+}
+
+.heading2 {
+    font-size: 2.5em;
+}
+
+.heading3 {
+    font-size: 1.8em;
+    padding-top: 60px;
+}
+
+.lead {
+    font-size: 1.3em;
+}
+
+.imageLanding {
+    border-radius: 5%;
+}
+
+.heading-weight {
+    font-weight: 400;
+}
+
+.landingPageLinks {
+    text-decoration: none !important;
+}

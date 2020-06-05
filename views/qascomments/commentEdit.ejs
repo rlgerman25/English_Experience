@@ -1,0 +1,17 @@
+<% include ../partials/header.ejs %> 
+
+<div class="container">
+    <h1 class="jumbotronheading text-center"> Edit Comment </h1>
+    <div class="formWidth">   
+        <form action="/q&a/<%= question_id %>/comment/<%= qaComment.id %>?_method=PUT " method="POST">
+            <div class="form-group">
+                <input class="form-control" type="text" name="comment[comment]" value="<%= qaComment.text %>">
+            </div>
+                <button class="btn btn-lg btn-primary btn-block"> Submit </button>
+            </div>
+        </form>
+        <a href="/q&a">Go Back</a>
+    </div>        
+</div>
+
+<% include ../partials/footer.ejs %>

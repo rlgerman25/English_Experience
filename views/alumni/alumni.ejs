@@ -1,0 +1,60 @@
+<% include ../partials/header.ejs %>
+    <main>
+        <section class="jumbotron text-center headingBackround">
+            <div class="container">
+                <h1 class="jumbotron-heading"> Alumni Connection</h1>
+                <hr class="my-4">
+                <p class="lead text-muted">Welcome to the place where you can interact and ask questions to USU English alumni, professors, students, and more.</p>
+            </div>
+            <p>
+                <a href="/alumni/new" class="btn btn-info my-2 btn-lg"> Join the Group</a>
+            </p>
+            <p>
+                <form action="/alumni" method="GET" class="form-inline">
+                    <div class="container searchPadding">
+                        <div class="form-group">
+                            <input type="text" name="search" placeholder="Search Person..." class="form-control searchWidth">
+                            <input type="submit" value="Search" class="btn btn default">
+                        </div>
+                    </div>
+                </form>
+            </p>
+        </section>
+
+        <div class="album py-5 bg-light">
+            <div class="container">
+                <div class="row" style="display: flex; flex-wrap: wrap">
+                    <!-- CODE IN CASE USER'S SEARCH RETUNRS NO MATCH -->
+                    <div class="col-md-16 text-center">
+                        <% if(noMatch !== null) { %>
+                            <h3>
+                                <%= noMatch %>
+                            </h3>
+                            <% } %>
+                    </div>
+
+                    <% alumns.forEach(function(alumn){ %>
+                        <div class="col-lg-4 col-md-4 col-sm-10 ">
+                            <div class="card mb-2">
+                                <img class="card-img-top img-fluid widthHeightCard" src="<%= alumn.alumniImage %>" data-holder-rendered="true">
+                                <div class="card-body">
+                                    <p class="nameColor"><strong> <%= alumn.alumniName %> </strong></p>
+                                    <p class="card-text">
+                                        <%= alumn.alumniDescription %>
+                                    </p>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="btn-group">
+                                            <a href="/alumni/<%=alumn._id%>" class="btn btn-sm btn-outline-info stretched-link "> View </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% }); %>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <% include ../partials/footer.ejs %>

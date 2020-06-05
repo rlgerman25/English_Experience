@@ -1,0 +1,59 @@
+<% include ../partials/header.ejs %>
+
+    <div class="container">
+        <header class="jumbotron">
+            <div>
+                <h1>English Q&A</h1>
+                <p>Ask your peers, professors and alumni questions</p>
+                <p>
+                    <a class="btn btn-info" href="/q&a/new"></i> Ask a Question </a>
+                </p>
+                <p>
+                    <form action="/q&a" method="GET" class="form-inline float-right">
+                        <div class="form-group">
+                            <input style="width: 18em" type="text" name="search" placeholder="Search for..." class="form-control">
+                            <input type="submit" value="Search" class="btn btn default">
+                        </div>
+                    </form>
+                </p>
+            </div>
+        </header>
+        <div class="container d-flex justify-content-center">
+            <div class="row text-center" id="proper-width">
+                <!-- CODE IN CASE USER'S SEARCH YIELDS NO RESULT -->
+                <div class="col-md-16">
+                    <% if(noMatch !== null) { %>
+                        <h3>
+                            <%= noMatch %>
+                        </h3>
+                        <% } %>
+                </div>
+                <% allQuestions.forEach(function(question){ %>
+                    <div class="col-md-10 col-sm-10 m-3 " id="proper-width">
+                        <div class="img-thumbnail" style="width: 600px; padding: 0; ">
+
+                            <div class="#">
+                                <img style="max-height: 350px;" class="img-fluid max-width: 100%" src="<%= question.image%>">
+                            </div>
+                            <div class="card-body">
+                                <div class="caption card-title">
+
+                                    <h4 style="margin: 5px, auto, 5px, auto;">
+                                        <%=question.question%>
+                                    </h4>
+                                </div>
+                                <div>
+                                    <p>
+                                        <a style="margin-bottom: 5px;" href="/q&a/<%= question._id %>" class="btn btn-outline-info float-right stretched-link"> View </a>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <%})%>
+            </div>
+        </div>
+    </div>
+
+    <% include ../partials/footer.ejs %>

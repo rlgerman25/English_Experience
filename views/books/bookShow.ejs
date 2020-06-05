@@ -1,0 +1,71 @@
+<% include ../partials/header.ejs %>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <p class="lead">English Experience</p>
+                <!--ADD API HERE!-->
+                <div class="list-group">
+                    <li class="list-group-item active">Student 1</li>
+                    <li class="list-group-item">Homework</li>
+                    <li class="list-group-item">Life</li>
+                </div>
+                <a class="noUnderline" href="/books"> <button class="btn btn-info btn-block"> <i class="fas fa-arrow-circle-left"></i>All Books</button></a>
+            </div>
+            <div class="col-md-8">
+                <div class="thumbnail imageNoPadding ">
+                    <img class="img-responsive" src="<%= book.bookImage%>">
+                    <div class="caption-full">
+                        <p class="submitted"><i>Submitted by <strong> <%= book.author.username %></strong>, <%= moment(book.createdAt).fromNow() %>. </i> </p>
+                        <div>
+                            <!--Edit and delete books-->
+                            <% if(currentUser && book.author.id.equals(currentUser._id)){ %>
+                                <button class="btn btn-outline-warning btn-sm noUnderline"> <a class="noUnderline" href="/books/<%= book._id %>/edit"> Edit </a></button>
+                                <form class="inline" action="/books/<%= book._id %>?_method=DELETE" method="POST">
+                                    <button class="btn btn-outline-danger btn-sm"> Delete </button>
+                                </form>
+                                <% } %>
+                        </div>
+                        <h2>
+                            <%=book.bookName%>
+                        </h2>
+                        <h4 class="pull-right">$
+                            <%= book.cost %>/
+                                <%= book.sellDescription %>
+                        </h4>
+                        <p> <i> <%=book.bookAuthor%> </i> </p>
+                        <p>
+                            <%=book.bookFavoritePart%>
+                        </p>
+                    </div>
+                </div>
+                <div class="well">
+                    <div class="text-right">
+                        <p class="btn btn-sm btn-outline-info">
+                            <a class="noUnderline" href="/books/<%= book._id %>/comment/new"> <i class="fas fa-plus"></i> Comment</a>
+                        </p>
+                    </div>
+                    <hr>
+                    <% book.comments.forEach(function(newBook) { %>
+                        <div class="row">
+                            <div class="col-md-12 commentAuthor">
+                                <strong> <%=  newBook.author.username %> </strong>
+                                <p>
+                                    <%= newBook.text %>
+                                </p>
+                                <% if(currentUser && newBook.author.id.equals(currentUser._id)){ %>
+                                    <a class="btn btn-outline-warning btn-xs" href="/books/<%= book._id %>/comment/<%= newBook._id %>/edit">Edit</a>
+                                    <form class="inline">
+                                        <button class="btn btn-outline-danger btn-xs"> Delete </button>
+                                    </form>
+                                    <span class="pull-right"> <%= moment(newBook.createdAt).fromNow() %></span>
+                                    <hr class="hrcomment">
+                                    <% } %>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Entirely thought of and created by Ronard Luna-->
+    <% include ../partials/footer.ejs %>

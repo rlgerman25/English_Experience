@@ -1,0 +1,67 @@
+<% include ../partials/header.ejs %>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <p class="lead">English Experience</p>
+                <!--ADD API HERE!-->
+                <div class="list-group">
+                    <li class="list-group-item active">Student 1</li>
+                    <li class="list-group-item">Homework</li>
+                    <li class="list-group-item">Life</li>
+                </div>
+                <a class="noUnderline" href="/alumni"> <button class="btn btn-info btn-block"> <i class="fas fa-arrow-circle-left"></i>  Go Back  </button> </a>
+            </div>
+            <div class="col-md-8">
+                <div class="thumbnail imageNoPadding">
+                    <img class="img-responsive" src="<%= alumn.alumniImage%>">
+                    <div class="caption-full">
+                        <p class="submitted"> Submitted by <strong> <%= alumn.author.username %></strong>,
+                            <%= moment(alumn.createdAt).fromNow() %>. </i>
+                        </p>
+                        <div>
+                            <!--EDIT AND DELETE ROUTES-->
+                            <% if(currentUser && alumn.author.id.equals(currentUser._id)){ %>
+                                <button class="btn btn-outline-warning btn-sm"> <a class="noUnderline" href="/alumni/<%= alumn._id %>/edit"> Edit </a> </button>
+                                <form class="inline" action="/alumni/<%= alumn._id %>?_method=DELETE" method="POST">
+                                    <button class="btn btn-outline-danger btn-sm"> Delete </button>
+                                </form>
+                                <% } %>
+                        </div>
+                        <h2>
+                            <%= alumn.alumniName %>
+                        </h2>
+                        <p>
+                            <%= alumn.alumniDescription %>
+                        </p>
+                    </div>
+                </div>
+                <div class="well">
+                    <div class="text-right">
+                        <p class="btn btn-sm btn-outline-info">
+                            <a href="/alumni/<%= alumn._id %>/comment/new"> <i class="fas fa-plus"></i> Comment</a>
+                        </p>
+                    </div>
+                    <hr>
+                    <% alumn.comments.forEach(function (comment){ %>
+                        <div class="row">
+                            <div class="col-md-12 commentAuthor">
+                                <strong> <%=  comment.author.username %> </strong>
+                                <p>
+                                    <%= comment.text %>
+                                </p>
+                                <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                                    <a class="btn btn-outline-warning btn-xs" href="/alumni/<%= alumn._id %>/comment/<%= comment._id %>/edit"> Edit </a>
+                                    <form class="inline" action="/alumni/<%= alumn._id %>/comment/<%= comment._id %>?_method=DELETE" method="POST">
+                                        <button class="btn btn-outline-danger btn-xs"> Delete </button>
+                                    </form>
+                                    <span class="pull-right"> <%= moment(comment.createdAt).fromNow() %> </span>
+                                    <hr class="hrcomment">
+                                    <% } %>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% include ../partials/footer.ejs %>

@@ -1,0 +1,20 @@
+.searchPadding {
+    padding-top: 30px;
+}
+
+.searchWidth {
+    width: 22em !important;
+}
+
+.headingBackround {
+    background-color: white;
+}
+
+.widthHeightCard {
+    width: auto;
+    max-height: 450px;
+}
+
+.nameColor {
+    color: #0099CC;
+}

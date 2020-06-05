@@ -1,0 +1,67 @@
+<% include ../partials/header.ejs %>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <p class="lead">English Experience</p>
+                <a class="noUnderline" href="/q&a"> <button class="btn btn-info btn-block"> <i class="fas fa-arrow-circle-left"></i>  All Questions </button> </a>
+
+            </div>
+            <div class="col-md-8">
+                <div class="thumbnail imageNoPadding">
+                    <img style=" padding: 0;" class="img-responsive" src="<%= question.image%>">
+                    <div class="caption-full">
+                        <p class="submitted"><i>Submitted by <strong> <%= question.author.username %> </strong> </i>,
+                            <%= moment(question.createdAt).fromNow() %>. </p>
+                        <h2>
+                            <%= question.question %>
+                        </h2>
+                        <p>
+                            <%= question.url %>
+                        </p>
+                        <div>
+                            <!--Edit and Delete functionality-->
+                            <% if(currentUser && question.author.id.equals(currentUser._id)){ %>
+                                <div>
+                                    <button class="btn btn-outline-warning btn-sm"> <a class="noUnderline" href="/q&a/<%= question._id %>/edit"> Edit </a> </button>
+                                    <form class="inline" action="/q&a/<%= question._id %>?_method=DELETE" method="POST">
+                                        <button class="btn btn-outline-danger btn-sm"> Delete </button>
+                                    </form>
+                                </div>
+
+                                <% } %>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="well">
+                    <div class="text-right">
+                        <p class="btn btn-sm btn-outline-info">
+                            <a href="/q&a/<%= question._id %>/comment/new"> <i class="fas fa-plus"></i> Comment</a>
+                        </p>
+                    </div>
+                    <hr>
+                    <% question.comments.forEach(function (qacomment){ %>
+                        <div class="row">
+                            <div class="col-md-12 commentAuthor">
+                                <strong> <%=  qacomment.author.username %> </strong>
+                                <p>
+                                    <%= qacomment.text %>
+                                </p>
+                                <% if(currentUser && qacomment.author.id.equals(currentUser._id)){ %>
+                                    <a class="btn btn-outline-warning btn-xs" href="/q&a/<%= question._id %>/comment/<%= qacomment._id %>/edit"> Edit </a>
+                                    <form class="inline" action="/q&a/<%= question._id %>/comment/<%= qacomment._id %>?_method=DELETE" method="POST">
+                                        <input type="submit" class="btn btn-outline-danger btn-xs" value="Delete">
+                                    </form>
+                                    <span class="pull-right"> <%= moment(qacomment.createdAt).fromNow() %> </span>
+                                    <hr class="hrcomment">
+                                    <% } %>
+
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <% include ../partials/footer.ejs %>

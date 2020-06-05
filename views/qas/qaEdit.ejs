@@ -1,0 +1,30 @@
+<% include ../partials/header.ejs %>
+    <style>
+        .noUnderline {
+            text-decoration: none !important;
+        }
+        
+        .necessaryPadding {
+            padding-top: 15px;
+        }
+    </style>
+    <div class="container">
+        <h1 class="jumbotronheading text-center">Edit <em><%= question.question %></em></h1>
+        <div class="formWidth">
+            <form action="/q&a/<%= question._id %>?_method=PUT" method="POST">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="question[question]" value="<%= question.question %>">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="question[image]" value="<%= question.image %>">
+                </div>
+                <input class="form-control" type="text" name="question[url]" value="<%= question.url %>">
+        </div>
+        <div class="form-group necessaryPadding">
+            <button class="btn btn-lg btn-primary btn-block"></i> Submit </button>
+        </div>
+        </form>
+        <button class="btn btn-outline-info "> <i class="fas fa-arrow-circle-left"></i> <a class="noUnderline" href="/q&a/" + question._id >Go Back</a> </button>
+    </div>
+
+    <% include ../partials/footer.ejs %>
